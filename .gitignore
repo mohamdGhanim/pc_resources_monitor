@@ -1,0 +1,6 @@
+# Generated log output — runtime data, not source
+pc_resource_log.txt
+
+# Python cache
+__pycache__/
+*.pyc
