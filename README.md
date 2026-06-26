@@ -5,6 +5,7 @@ A simple python script that monitors you CPU, RAM and Disk usage; gives you warn
 - Gives out the usage percentage of the disk, memory and CPU.
 - Test the percentage of each status against specified threshold.
 - If the percentage exceeds the threshold it prints out a warning message.
+- The output is saved into a log file. It will be created in the first use and then the output will continue to be appended in the same file.
 
 ## Requirements
 - Python 3 or above installed
