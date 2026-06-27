@@ -8,6 +8,7 @@ from datetime import datetime
 CPU_THRESHOLD = 85
 DISK_THRESHOLD = 80
 MEMORY_THRESHOLD = 90
+log_file = "D:\\monitor\\pc_resources_monitor\\pc_resource_log.txt"
 
 cpu_usage = psutil.cpu_percent(interval=1)
 memory_info = psutil.virtual_memory()
@@ -25,7 +26,8 @@ disk_status = check_system_resource(disk_usage.percent, DISK_THRESHOLD, "Disk")
 cpu_status =   check_system_resource(cpu_usage, CPU_THRESHOLD, "CPU")
 memory_status = check_system_resource(memory_info.percent, MEMORY_THRESHOLD, "Memory")
 
-open("pc_resource_log.txt", "a").write(f"{disk_status}\n{cpu_status}\n{memory_status}\n")
+with open(log_file, "a") as log:
+    log.write(f"{disk_status}\n{cpu_status}\n{memory_status}\n")
 
 print(disk_status)
 print(cpu_status)
