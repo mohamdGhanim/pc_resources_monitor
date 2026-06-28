@@ -1,5 +1,5 @@
 # pc_resources_monitor
-A simple python script that monitors you CPU, RAM and Disk usage; gives you warnings when the specified usage limits are exceeded. It is built to learn the fundamentals of system monitoring. And to improve it to become mature enough for my personal use.
+A simple python script that monitors your CPU, RAM and Disk usage; gives you warnings when the specified usage limits are exceeded. It is built to learn the fundamentals of system monitoring. And to improve it to become mature enough for my personal use.
 
 ## Features
 - Gives out the usage percentage of the disk, memory and CPU.
