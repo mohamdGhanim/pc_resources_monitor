@@ -11,14 +11,32 @@ A simple python script that monitors you CPU, RAM and Disk usage; gives you warn
 - Python 3 or above installed
 - psutil library installed
 
-## Installation and usage
+## Installation
 - Install python 3 or above
 - Install psutil using the command ```pip install psutil```
-- Run the code using the command ```python pc_resource_monitor.py``` in the terminal and you will get the output immediately
+- To test it run the code using the command ```python pc_resource_monitor.py``` in the terminal and you will get the output immediately
+## How to create the resourses monitor routine
 
-## Example output
-```[2026-06-26 22:28:38] Warning: Disk usage is above 80%```
+The script runs once and exits, so it's designed to be triggered on a schedule by the operating system rather than looping internally. Replace the bracketed paths with your own. To find your python path execute the command ```where python```
 
-```[2026-06-26 22:28:38] CPU usage is within acceptable limits.```
+### Windows (Task Scheduler)
 
-```[2026-06-26 22:28:38] Memory usage is within acceptable limits.```
+Run in **Command Prompt** (not PowerShell, due to quote escaping). Uses `pythonw.exe` so it runs silently with no console window:
+
+```
+schtasks /create /tn "System Resource Monitor" /tr "\"[PATH_TO_pythonw.exe]\" \"[PATH_TO_SCRIPT]\"" /sc minute /mo 30
+```
+- In the ```/mo 30``` you can change the interval between calls. Here I set it to every 30 minutes.
+You can manage the task by executing the commands:
+
+```
+schtasks /query  /tn "System Resource Monitor" /v /fo list   :: view status
+schtasks /change /tn "System Resource Monitor" /disable      :: pause
+schtasks /change /tn "System Resource Monitor" /enable       :: resume
+schtasks /delete /tn "System Resource Monitor" /f            :: remove
+```
+
+> **Note:** Schedulers run the script from a minimal environment, not the project
+> folder, so the log path in the script is set as an absolute path to ensure the
+> log is always written to the same location regardless of where the script is launched.
+
